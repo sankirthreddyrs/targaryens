@@ -251,10 +251,21 @@ def score_candidate(features: dict, semantic_sim: float) -> tuple:
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 def main():
-    args  = get_args()
+    args = get_args()
     start = time.time()
 
-    # ── Load precomputed data ──
+    # ── Auto-unzip if needed ──
+    if not os.path.exists(args.pkl_path):
+        zip_path = args.pkl_path.replace('.pkl', '.zip')
+        if os.path.exists(zip_path):
+            print(f"Extracting {zip_path}...")
+            import zipfile
+            with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+                zip_ref.extractall()
+        else:
+            print(f"Error: Could not find {args.pkl_path} or {zip_path}. Did you run precompute_embeddings.py?")
+            return
+
     print("Loading precomputed data...")
     with open(args.pkl_path, "rb") as f:
         data = pickle.load(f)
