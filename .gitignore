@@ -1,0 +1,17 @@
+# Ignore the massive dataset folder
+data/
+[PUB] India_runs_data_and_ai_challenge.zip
+
+# Ignore python cache files
+__pycache__/
+*.pyc
+
+# Optional: if you prefer the judges to run precompute_embeddings.py themselves
+# you can ignore the pkl file, but since it's 63MB (under GitHub's 100MB limit),
+# it's usually safer to push it so rank.py works instantly.
+# precomputed_data.pkl 
+
+# Ignore environment folders if you make one
+venv/
+env/
+.env
